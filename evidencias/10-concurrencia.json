@@ -1,0 +1,141 @@
+{
+  "claves": {
+    "sharedKey": "concurrente-e80e1857-f4a5-44e0-bffb-b3fbb2da190b",
+    "newKeyA": "nuevo-bc756eae-2f2b-4459-bfe2-7c7398c09ed7",
+    "newKeyB": "nuevo-1abaeda9-d44e-45ad-9701-458ede6563c1"
+  },
+  "solicitudes": [
+    {
+      "prueba": "Misma operacion A",
+      "clave_operacion": "concurrente-e80e1857-f4a5-44e0-bffb-b3fbb2da190b",
+      "request_id": "b26c36b0-e207-4bb8-a637-f6366af1eb3c",
+      "inicio": "2026-10-10T17:18:34.395Z",
+      "fin": "2026-10-10T17:18:35.771Z",
+      "duracion_ms": 1367,
+      "http": 201,
+      "instancia": "app1",
+      "envio_id": "5",
+      "cuerpo": {
+        "id": "5",
+        "destinatario": "Cliente prueba concurrencia",
+        "direccion": "Direccion prueba concurrencia"
+      }
+    },
+    {
+      "prueba": "Misma operacion B",
+      "clave_operacion": "concurrente-e80e1857-f4a5-44e0-bffb-b3fbb2da190b",
+      "request_id": "79932501-6c70-45bd-bbe9-0593fbc11f4f",
+      "inicio": "2026-10-10T17:18:34.555Z",
+      "fin": "2026-10-10T17:18:35.776Z",
+      "duracion_ms": 1220,
+      "http": 200,
+      "instancia": "app3",
+      "envio_id": "5",
+      "cuerpo": {
+        "id": "5",
+        "destinatario": "Cliente prueba concurrencia",
+        "direccion": "Direccion prueba concurrencia"
+      }
+    },
+    {
+      "prueba": "Operacion nueva A",
+      "clave_operacion": "nuevo-bc756eae-2f2b-4459-bfe2-7c7398c09ed7",
+      "request_id": "9a581913-c288-4b74-9556-22d0dbd0a462",
+      "inicio": "2026-10-10T17:18:38.785Z",
+      "fin": "2026-10-10T17:18:39.192Z",
+      "duracion_ms": 408,
+      "http": 201,
+      "instancia": "app2",
+      "envio_id": "8",
+      "cuerpo": {
+        "id": "8",
+        "destinatario": "Cliente prueba concurrencia",
+        "direccion": "Direccion prueba concurrencia"
+      }
+    },
+    {
+      "prueba": "Operacion nueva B",
+      "clave_operacion": "nuevo-1abaeda9-d44e-45ad-9701-458ede6563c1",
+      "request_id": "74c23c76-3350-4588-bce9-df4fcd239f78",
+      "inicio": "2026-10-10T17:18:38.786Z",
+      "fin": "2026-10-10T17:18:38.830Z",
+      "duracion_ms": 44,
+      "http": 201,
+      "instancia": "app3",
+      "envio_id": "7",
+      "cuerpo": {
+        "id": "7",
+        "destinatario": "Cliente prueba concurrencia",
+        "direccion": "Direccion prueba concurrencia"
+      }
+    }
+  ],
+  "base_datos": {
+    "envios": [
+      {
+        "id": 5,
+        "clave_operacion": "concurrente-e80e1857-f4a5-44e0-bffb-b3fbb2da190b",
+        "destinatario": "Cliente prueba concurrencia",
+        "direccion": "Direccion prueba concurrencia"
+      },
+      {
+        "id": 7,
+        "clave_operacion": "nuevo-1abaeda9-d44e-45ad-9701-458ede6563c1",
+        "destinatario": "Cliente prueba concurrencia",
+        "direccion": "Direccion prueba concurrencia"
+      },
+      {
+        "id": 8,
+        "clave_operacion": "nuevo-bc756eae-2f2b-4459-bfe2-7c7398c09ed7",
+        "destinatario": "Cliente prueba concurrencia",
+        "direccion": "Direccion prueba concurrencia"
+      }
+    ],
+    "intentos": [
+      {
+        "request_id": "b26c36b0-e207-4bb8-a637-f6366af1eb3c",
+        "clave_operacion": "concurrente-e80e1857-f4a5-44e0-bffb-b3fbb2da190b",
+        "instancia": "app1",
+        "iniciado_en": "2026-10-10T17:18:35.439676+00:00",
+        "procesado_en": "2026-10-10T17:18:35.549805+00:00",
+        "resultado": "creado",
+        "envio_id": 5,
+        "codigo_http_previsto": 201,
+        "codigo_http_emitido": 201
+      },
+      {
+        "request_id": "79932501-6c70-45bd-bbe9-0593fbc11f4f",
+        "clave_operacion": "concurrente-e80e1857-f4a5-44e0-bffb-b3fbb2da190b",
+        "instancia": "app3",
+        "iniciado_en": "2026-10-10T17:18:35.466477+00:00",
+        "procesado_en": "2026-10-10T17:18:35.677333+00:00",
+        "resultado": "repetido",
+        "envio_id": 5,
+        "codigo_http_previsto": 200,
+        "codigo_http_emitido": 200
+      },
+      {
+        "request_id": "74c23c76-3350-4588-bce9-df4fcd239f78",
+        "clave_operacion": "nuevo-1abaeda9-d44e-45ad-9701-458ede6563c1",
+        "instancia": "app3",
+        "iniciado_en": "2026-10-10T17:18:38.765669+00:00",
+        "procesado_en": "2026-10-10T17:18:38.793893+00:00",
+        "resultado": "creado",
+        "envio_id": 7,
+        "codigo_http_previsto": 201,
+        "codigo_http_emitido": 201
+      },
+      {
+        "request_id": "9a581913-c288-4b74-9556-22d0dbd0a462",
+        "clave_operacion": "nuevo-bc756eae-2f2b-4459-bfe2-7c7398c09ed7",
+        "instancia": "app2",
+        "iniciado_en": "2026-10-10T17:18:39.109592+00:00",
+        "procesado_en": "2026-10-10T17:18:39.143267+00:00",
+        "resultado": "creado",
+        "envio_id": 8,
+        "codigo_http_previsto": 201,
+        "codigo_http_emitido": 201
+      }
+    ]
+  }
+}
