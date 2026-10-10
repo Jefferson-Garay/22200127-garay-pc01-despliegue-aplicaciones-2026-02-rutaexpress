@@ -1,9 +1,13 @@
 {
-  "name": "container-nodejs",
+  "name": "envios-app",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": { "start": "node server.js" },
-  "dependencies": { 
+  "private": true,
+  "description": "Servicio de envios RutaExpress",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
     "express": "^4.19.0",
     "pg": "^8.11.0"
   }
