@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS intentos (
     resultado TEXT NOT NULL DEFAULT 'recibido'
         CHECK (resultado IN (
             'recibido',
+            'aceptado',
             'creado',
             'repetido',
             'rechazado',
