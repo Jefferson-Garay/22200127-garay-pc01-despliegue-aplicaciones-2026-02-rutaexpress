@@ -1,0 +1,300 @@
+{
+  "comandos": [
+    {
+      "comando": "docker compose stop -t 1 app2",
+      "inicio": "2026-10-10T17:21:40.311Z",
+      "fin": "2026-10-10T17:21:44.092Z",
+      "salida": " Container rutaexpress-pc01-app2-1 Stopping \n Container rutaexpress-pc01-app2-1 Stopped \n"
+    },
+    {
+      "comando": "docker compose ps -a",
+      "inicio": "2026-10-10T17:21:45.294Z",
+      "fin": "2026-10-10T17:21:46.213Z",
+      "salida": "NAME                       IMAGE                COMMAND                  SERVICE   CREATED          STATUS                       PORTS\nrutaexpress-pc01-app1-1    envios-app:1.0.0     \"docker-entrypoint.s…\"   app1      15 minutes ago   Up 15 minutes                3000/tcp\nrutaexpress-pc01-app2-1    envios-app:1.0.0     \"docker-entrypoint.s…\"   app2      15 minutes ago   Exited (137) 3 seconds ago   \nrutaexpress-pc01-app3-1    envios-app:1.0.0     \"docker-entrypoint.s…\"   app3      15 minutes ago   Up 15 minutes                3000/tcp\nrutaexpress-pc01-db-1      postgres:16-alpine   \"docker-entrypoint.s…\"   db        51 minutes ago   Up 51 minutes (healthy)      127.0.0.1:15432->5432/tcp\nrutaexpress-pc01-nginx-1   nginx:1.27-alpine    \"/docker-entrypoint.…\"   nginx     14 minutes ago   Up 14 minutes                0.0.0.0:8080->80/tcp, [::]:8080->80/tcp\n"
+    },
+    {
+      "comando": "docker compose start app2",
+      "inicio": "2026-10-10T17:21:54.150Z",
+      "fin": "2026-10-10T17:21:58.203Z",
+      "salida": " Container rutaexpress-pc01-db-1 Waiting \n Container rutaexpress-pc01-db-1 Healthy \n Container rutaexpress-pc01-app2-1 Starting \n Container rutaexpress-pc01-app2-1 Started \n"
+    },
+    {
+      "comando": "docker compose ps -a",
+      "inicio": "2026-10-10T17:22:07.439Z",
+      "fin": "2026-10-10T17:22:08.402Z",
+      "salida": "NAME                       IMAGE                COMMAND                  SERVICE   CREATED          STATUS                    PORTS\nrutaexpress-pc01-app1-1    envios-app:1.0.0     \"docker-entrypoint.s…\"   app1      15 minutes ago   Up 15 minutes             3000/tcp\nrutaexpress-pc01-app2-1    envios-app:1.0.0     \"docker-entrypoint.s…\"   app2      15 minutes ago   Up 11 seconds             3000/tcp\nrutaexpress-pc01-app3-1    envios-app:1.0.0     \"docker-entrypoint.s…\"   app3      15 minutes ago   Up 15 minutes             3000/tcp\nrutaexpress-pc01-db-1      postgres:16-alpine   \"docker-entrypoint.s…\"   db        51 minutes ago   Up 51 minutes (healthy)   127.0.0.1:15432->5432/tcp\nrutaexpress-pc01-nginx-1   nginx:1.27-alpine    \"/docker-entrypoint.…\"   nginx     14 minutes ago   Up 14 minutes             0.0.0.0:8080->80/tcp, [::]:8080->80/tcp\n"
+    }
+  ],
+  "solicitudes": [
+    {
+      "fase": "Antes",
+      "consulta": 1,
+      "request_id": "fa2b80ec-8301-401b-a907-4cda83bd3362",
+      "inicio": "2026-10-10T17:21:36.988Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:37.946Z"
+    },
+    {
+      "fase": "Antes",
+      "consulta": 2,
+      "request_id": "811857bf-cf68-40d9-9af7-2107edcbad76",
+      "inicio": "2026-10-10T17:21:38.553Z",
+      "http": 200,
+      "instancia": "app2",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app2\"}",
+      "fin": "2026-10-10T17:21:38.885Z"
+    },
+    {
+      "fase": "Antes",
+      "consulta": 3,
+      "request_id": "2a8e747f-c5d2-40e5-98c3-321d63b83cf3",
+      "inicio": "2026-10-10T17:21:39.498Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:39.707Z"
+    },
+    {
+      "fase": "Transicion",
+      "consulta": 1,
+      "request_id": "d799e351-430e-45b0-8c29-649f65688a5b",
+      "inicio": "2026-10-10T17:21:40.347Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:40.370Z"
+    },
+    {
+      "fase": "Transicion",
+      "consulta": 2,
+      "request_id": "2a103f03-81dc-429a-ac2c-4a4de3ca0670",
+      "inicio": "2026-10-10T17:21:40.986Z",
+      "http": 200,
+      "instancia": "app2",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app2\"}",
+      "fin": "2026-10-10T17:21:41.012Z"
+    },
+    {
+      "fase": "Transicion",
+      "consulta": 3,
+      "request_id": "6f9b5f7a-aff4-4b40-83a6-48e133ac8972",
+      "inicio": "2026-10-10T17:21:41.621Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:41.647Z"
+    },
+    {
+      "fase": "Transicion",
+      "consulta": 4,
+      "request_id": "1047da9c-a743-42c6-906e-c8e1f904db8b",
+      "inicio": "2026-10-10T17:21:42.253Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:42.330Z"
+    },
+    {
+      "fase": "Transicion",
+      "consulta": 5,
+      "request_id": "b8aa9690-da76-428a-9e7b-ccdd23510ca1",
+      "inicio": "2026-10-10T17:21:42.936Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:44.003Z"
+    },
+    {
+      "fase": "Transicion",
+      "consulta": 6,
+      "request_id": "08c4f80f-53d7-43eb-8bf3-1ec4665c695c",
+      "inicio": "2026-10-10T17:21:44.612Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:44.690Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 1,
+      "request_id": "88c38453-1d36-4c44-a6ed-19eb4e055e14",
+      "inicio": "2026-10-10T17:21:46.213Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:46.244Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 2,
+      "request_id": "94f6fa61-fb1c-44e9-8bea-544425c07a0f",
+      "inicio": "2026-10-10T17:21:46.859Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:47.121Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 3,
+      "request_id": "3fc9ea53-a581-41e2-adaf-794fbeedbcbf",
+      "inicio": "2026-10-10T17:21:47.751Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:47.779Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 4,
+      "request_id": "1efcc27c-6f1e-4d23-85c6-189878b838b6",
+      "inicio": "2026-10-10T17:21:48.397Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:49.430Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 5,
+      "request_id": "ac89c884-8304-44c1-8cd9-8276e384dbfb",
+      "inicio": "2026-10-10T17:21:50.046Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:50.313Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 6,
+      "request_id": "f3fd3b93-869e-41b0-88eb-90ec35b3725e",
+      "inicio": "2026-10-10T17:21:50.919Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:51.472Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 7,
+      "request_id": "cc8dd1ef-fdb7-4482-b288-5b0ca37907d8",
+      "inicio": "2026-10-10T17:21:52.087Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:52.218Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 8,
+      "request_id": "f9e84d27-ba82-47cd-8068-659a7cade76b",
+      "inicio": "2026-10-10T17:21:52.826Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:21:52.887Z"
+    },
+    {
+      "fase": "App2 detenida",
+      "consulta": 9,
+      "request_id": "738c0532-de77-444a-8afb-186137d8b97e",
+      "inicio": "2026-10-10T17:21:53.490Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:21:53.535Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 1,
+      "request_id": "050ff6b9-ca54-4465-a6cd-6d39b1c673a1",
+      "inicio": "2026-10-10T17:22:01.205Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:22:01.281Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 2,
+      "request_id": "8b78d618-196e-4b14-9abe-0dad580d1834",
+      "inicio": "2026-10-10T17:22:01.889Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:22:01.965Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 3,
+      "request_id": "3f716085-373e-48e7-9d5a-ba981e8c38b6",
+      "inicio": "2026-10-10T17:22:02.587Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:22:02.654Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 4,
+      "request_id": "cc860683-8c62-460a-9675-dcc0da0d242b",
+      "inicio": "2026-10-10T17:22:03.275Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:22:03.350Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 5,
+      "request_id": "d923f7cf-0701-4488-9be8-3e327062848d",
+      "inicio": "2026-10-10T17:22:03.955Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:22:04.068Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 6,
+      "request_id": "b6a3dc76-f736-4e54-bc43-4a04979968d6",
+      "inicio": "2026-10-10T17:22:04.672Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:22:04.715Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 7,
+      "request_id": "8d39de91-fe11-4d87-86c3-f6f886315e22",
+      "inicio": "2026-10-10T17:22:05.321Z",
+      "http": 200,
+      "instancia": "app3",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app3\"}",
+      "fin": "2026-10-10T17:22:05.344Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 8,
+      "request_id": "0dae0c1c-090e-43fe-9b85-c3639566d173",
+      "inicio": "2026-10-10T17:22:05.960Z",
+      "http": 200,
+      "instancia": "app1",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app1\"}",
+      "fin": "2026-10-10T17:22:05.982Z"
+    },
+    {
+      "fase": "App2 recuperada",
+      "consulta": 9,
+      "request_id": "febd92a7-8bd5-4a6d-a1da-e5ec9e1b8ce2",
+      "inicio": "2026-10-10T17:22:06.597Z",
+      "http": 200,
+      "instancia": "app2",
+      "respuesta": "{\"status\":\"ok\",\"database\":\"ok\",\"instance\":\"app2\"}",
+      "fin": "2026-10-10T17:22:06.830Z"
+    }
+  ]
+}
