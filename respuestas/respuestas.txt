@@ -1,0 +1,70 @@
+PRÁCTICA CALIFICADA 01 — RUTAEXPRESS
+Código: 22200127
+Apellido: Garay
+
+1. Timeout y recuperación
+
+Mi solución evita que un reintento genere dos envíos para una misma operación. El cliente debe conservar la misma cabecera Idempotency-Key al repetirla.
+
+En mi prueba, el cliente tuvo un timeout a los 2054 ms. Antes de ese momento, una consulta ya había comprobado que el envío estaba registrado. app1 creó el envío con ID 3 y app2 atendió el reintento con HTTP 200, conservando ese mismo ID.
+
+Esto evita generar dos recojos o dos cobros porque el trabajador no recibió la primera respuesta. También permite recuperar el resultado sin perder la confianza del cliente.
+
+Evidencias: evidencias/09-timeout.json y las capturas de timeout.
+
+
+2. Concurrencia y réplicas
+
+Si dos réplicas crearan un envío para la misma operación, RutaExpress podría programar dos recojos, cobrar dos veces y registrar información duplicada.
+
+Por eso el control se realiza en PostgreSQL, compartido por las tres réplicas. La clave de operación tiene una restricción UNIQUE y el código utiliza INSERT con ON CONFLICT. Así, la base de datos impide guardar dos envíos con la misma clave aunque las solicitudes lleguen a instancias diferentes.
+
+En la prueba simultánea, app1 respondió 201 y app3 respondió 200; ambas devolvieron el envío 5. Además, dos claves diferentes permitieron crear los envíos 7 y 8 con los mismos datos, porque eran operaciones nuevas intencionales.
+
+Evidencias: evidencias/10-concurrencia.json y 10-concurrencia.png.
+
+
+3. Entrega y configuración
+
+La imagen envios-app:1.0.0 reúne Node.js, las dependencias y el código. El Dockerfile utiliza npm ci para instalar las versiones del package-lock.json y ejecuta la aplicación con un usuario distinto de root.
+
+Docker Compose define las tres réplicas, PostgreSQL y Nginx. Otra oficina puede copiar .env.example a .env, completar sus credenciales y levantar los servicios con Docker Compose. Esto reduce diferencias de versiones y evita instalar manualmente Node.js y PostgreSQL en cada equipo.
+
+En mi evidencia de servicios, las tres réplicas utilizan la misma imagen versionada. La publicación en Docker Hub y la demostración de descarga quedaron pendientes; por ello, la entrega todavía requiere construir la imagen localmente.
+
+Evidencia: evidencias/03-servicios-y-validacion-nginx.png.
+
+
+4. Persistencia y recuperación
+
+El volumen db_data conserva los datos de PostgreSQL al eliminar y volver a crear los contenedores. Esto protege tanto los envíos como las claves utilizadas para reconocer operaciones ya completadas.
+
+En mi prueba consulté los envíos antes y después de recrear los contenedores. Después, repetí la operación pc01-envio-001 y recibí HTTP 200 con el mismo ID 1.
+
+Para RutaExpress, esto permite continuar trabajando después de una recreación sin perder los envíos ni repetir operaciones. Perder esa información podría ocasionar recojos olvidados, duplicados y dificultades para comprobar qué se registró.
+
+Evidencias: evidencias/12-envios-antes.txt, 13-envios-despues.txt y 13-reintento-despues.txt. La consulta específica desde DBeaver quedó pendiente.
+
+
+5. Continuidad del servicio
+
+Las réplicas permiten que una oficina siga registrando solicitudes cuando una instancia se detiene. En mi prueba, con app2 detenida, las nueve consultas respondieron HTTP 200 desde app1 y app3. Al restablecerla, app2 volvió a responder en la novena consulta de recuperación.
+
+Durante esta ejecución no observé errores HTTP ni de conexión desde el cliente. Esto reduce las interrupciones durante la jornada.
+
+Sin embargo, tres réplicas no garantizan disponibilidad absoluta: PostgreSQL, Nginx y el equipo que ejecuta Docker siguen siendo componentes compartidos. Si alguno falla, las tres aplicaciones pueden quedar sin acceso a los datos o sin recibir solicitudes.
+
+Evidencias: evidencias/11-continuidad.json, 11-continuidad.jsonl y 11-continuidad.png.
+
+
+6. Rechazos por exceso de solicitudes
+
+El límite de solicitudes protege la capacidad del servicio frente a ráfagas. Configuré Nginx para limitar POST /envios a 2 solicitudes por segundo por IP, con una ráfaga adicional de 4, procesamiento inmediato de las permitidas y rechazo HTTP 429.
+
+La configuración registra fecha, IP, método, ruta y estado HTTP en access.jsonl, dentro del volumen nginx_logs. Estos registros permiten investigar un reclamo y distinguir un rechazo de Nginx de un error del backend, sin guardar contraseñas ni el cuerpo con datos personales.
+
+Un trabajador rechazado debe reducir la frecuencia y conservar la misma clave de operación al reintentar. Esto evita duplicar un envío si un intento anterior ya se completó.
+
+La configuración está implementada, pero quedaron pendientes la carga que demuestre respuestas 429, su conteo, la recuperación al reducir la frecuencia y la verificación de los logs después de recrear Nginx.
+
+Referencia de implementación: nginx.conf y docker-compose.yml. No adjunto resultados de una prueba 429 porque aún no fue ejecutada.
