@@ -1,0 +1,62 @@
+{
+  "clave_operacion": "timeout-e7ea529f-97b5-4d08-8bbe-4e3e1fc168d6",
+  "observacion_durante_espera": {
+    "observado_en": "2026-10-10T17:11:37.247039+00:00",
+    "cantidad": 1,
+    "intentos": [
+      {
+        "request_id": "250cc672-b5d4-43ff-9b38-8b41e078dc16",
+        "instancia": "app1",
+        "resultado": "creado",
+        "envio_id": 3,
+        "procesado_en": "2026-10-10T17:11:36.803574+00:00"
+      }
+    ]
+  },
+  "primer_intento_cliente": {
+    "request_id": "250cc672-b5d4-43ff-9b38-8b41e078dc16",
+    "inicio": "2026-10-10T17:11:35.499Z",
+    "fin": "2026-10-10T17:11:37.557Z",
+    "duracion_ms": 2054,
+    "resultado_cliente": "timeout",
+    "http": null,
+    "error": "CLIENT_TIMEOUT_2000MS"
+  },
+  "reintento_cliente": {
+    "request_id": "b4a6466b-1d93-4ff7-832a-6b3009b1deae",
+    "inicio": "2026-10-10T17:11:38.159Z",
+    "fin": "2026-10-10T17:11:38.675Z",
+    "duracion_ms": 516,
+    "resultado_cliente": "respuesta",
+    "http": 200,
+    "instancia": "app2",
+    "cuerpo": "{\"id\":\"3\",\"destinatario\":\"Cliente prueba timeout\",\"direccion\":\"Direccion prueba timeout\"}"
+  },
+  "estado_final": {
+    "cantidad_envios": 1,
+    "intentos": [
+      {
+        "request_id": "250cc672-b5d4-43ff-9b38-8b41e078dc16",
+        "instancia": "app1",
+        "resultado": "creado",
+        "envio_id": 3,
+        "iniciado_en": "2026-10-10T17:11:36.431669+00:00",
+        "procesado_en": "2026-10-10T17:11:36.803574+00:00",
+        "codigo_http_previsto": 201,
+        "codigo_http_emitido": null,
+        "conexion_cerrada_antes_de_responder": true
+      },
+      {
+        "request_id": "b4a6466b-1d93-4ff7-832a-6b3009b1deae",
+        "instancia": "app2",
+        "resultado": "repetido",
+        "envio_id": 3,
+        "iniciado_en": "2026-10-10T17:11:38.536225+00:00",
+        "procesado_en": "2026-10-10T17:11:38.609773+00:00",
+        "codigo_http_previsto": 200,
+        "codigo_http_emitido": 200,
+        "conexion_cerrada_antes_de_responder": false
+      }
+    ]
+  }
+}
